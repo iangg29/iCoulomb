@@ -6,6 +6,7 @@ classdef Position
         x double
         y double
         z double
+        vec double
     end
     
     methods
@@ -14,6 +15,11 @@ classdef Position
             obj.x = x;
             obj.y = y;
             obj.z = z;
+            obj.vec = [x y z];
+        end
+        
+        function obj = set.vec(obj, vec)
+            obj.vec = vec;
         end
         
         function obj = set.x(obj, x)
@@ -29,7 +35,7 @@ classdef Position
         end
         
         function str = getDisplay(obj)
-            str = obj.x + "i + " + obj.y + "j + " + obj.z + "z";
+            str = obj.vec(1) + "i + " + obj.vec(2) + "j + " + obj.vec(3) + "z";
         end
     end
 end

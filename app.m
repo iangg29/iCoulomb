@@ -1,4 +1,4 @@
-classdef app
+classdef app<handle
     % APP
     %   Initial app engine.
     %   Contains all program logic.
@@ -9,7 +9,11 @@ classdef app
         author string = "Ian García"
         debug = false
         
-        cargas cell
+    end
+    
+    properties
+        num double
+        cargas Charge
     end
     
     methods
@@ -20,6 +24,7 @@ classdef app
                 obj.version = version;
                 obj.author = "Ian García";
                 obj.debug = debug;
+                obj.num = 0;
             end
         end
         
@@ -34,29 +39,25 @@ classdef app
             disp("==================================================");
             obj.setup()
         end
+
         
         function addCharge(obj, charge)
+            obj.num = obj.num + 1;
+            obj.cargas(obj.num) = charge;
             if obj.debug
                 fprintf("La carga (%i) ha sido agreada al sistema!\n", charge.id)
             end
-            obj.cargas{end + 1} = charge;
-        end
-        
-        function cargas = getCargas(obj)
-            cargas = obj.cargas;
         end
         
         function setup(obj)
             disp("Starting setup...")
             n = input("¿De cuántas cargas es el sistema?: ");
             for i = 1:n
-                charge = Charge(i);
-                charge.setup();
+                charge = Charge(i, input("Ingresa el valor de la carga: "), Position(input("Ingresa el la posición en X: "),input("Ingresa el la posición en Y: "), input("Ingresa el la posición en Z: ")));
                 obj.addCharge(charge);
             end
             disp("Charges setup completed.")
-            size(obj.cargas)
-            %obj.launchConsole()
+            obj.launchConsole()
         end
         
         function menu(obj)

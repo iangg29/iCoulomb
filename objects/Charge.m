@@ -4,16 +4,16 @@ classdef Charge
     
     properties
         id double
-        value int64
+        value double
         pos Position
     end
     
     methods
-        function obj = Charge(id)
+        function obj = Charge(id, value, pos)
             % Charge Construct an instance of this class
             obj.id = id;
-            obj.value = 0;
-            obj.pos = Position(0,0,0);
+            obj.value = value;
+            obj.pos = pos;
         end
         
         function obj = set.id(obj,id)
@@ -26,15 +26,7 @@ classdef Charge
         end
         
         function displayDetail(obj)
-            fprintf("- Carga (%i) %i C - Posición %s", obj.id, obj.value, obj.pos.getDisplay());
-        end
-        
-        function setup(obj)
-            obj.value = input("Ingresa el valor de la carga: ");
-            obj.pos.x = input("Ingresa el la posición en X: ");
-            obj.pos.y = input("Ingresa el la posición en Y: ");
-            obj.pos.z = input("Ingresa el la posición en Z: ");
-            obj.displayPosition();
+            fprintf("- Carga (%i) %i C - Posición %s\n", obj.id, obj.value, obj.pos.getDisplay());
         end
     end
 end
