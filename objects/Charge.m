@@ -3,21 +3,42 @@ classdef Charge
     %   Charge in an electric field.
     
     properties
-        id double
-        value double
-        pos Position
+        id double           % Charge ID.
+        value double        % Value of charge.
+        pos Position        % Charge position.
     end
     
     methods
         function obj = Charge(id, value, pos)
-            % Charge Construct an instance of this class
+            % Charge Construct a charge in an electric field.
             obj.id = id;
             obj.value = value;
             obj.pos = pos;
         end
         
         function obj = set.id(obj,id)
+            % set.id Sets a new charge id.
             obj.id = id;
+        end
+        
+        function id = get.id(obj)
+            % get.id Retrieves charge id.
+            id = obj.id;
+        end
+        
+        function obj = set.value(obj, value)
+            % set.value Sets a new charge value.
+            obj.value = value;
+        end
+        
+        function value = get.value(obj)
+            % get.value Retrieves charge value.
+            value = obj.value;
+        end
+        
+        function pos = get.pos(obj)
+            % get.pos Retrieves charge position.
+            pos = obj.pos;
         end
         
         function displayPosition(obj)
@@ -26,6 +47,7 @@ classdef Charge
         end
         
         function displayDetail(obj)
+            % displayDetail Prints charge properties.
             fprintf("- Carga (%i) %i C - Posición %s\n", obj.id, obj.value, obj.pos.getDisplay());
         end
     end
