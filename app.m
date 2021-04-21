@@ -75,6 +75,7 @@ classdef app<handle
             disp("CARGAS - Muestra todas las cargas registradas.")
             disp("CALCULAR - Calcula la fuerza eléctrica.")
             disp("INTENSIDAD - Calcula la intensidad del campo eléctrico.")
+            disp("POTENCIAL - Calcula el potencial eléctrico de cargas puntuales.")
             disp("SALIR - Cierra el programa.")
             disp("==============")
         end
@@ -101,6 +102,10 @@ classdef app<handle
                     intensidad = obj.intensity();
                     disp("LA INTENSIDAD DEL CAMPO ELÉCTRICO ES:")
                     disp(intensidad)
+                elseif answer == "POTENCIAL"
+                    potencial = obj.potencial();
+                    disp("EL POTENCIAL ELÉCTRICO DEL CAMPO ELÉCTRICO ES:")
+                    disp(potencial)
                 elseif answer == "SALIR"
                     disp("Thank you for using this app.")
                     start = 0;
@@ -128,6 +133,17 @@ classdef app<handle
             F = obj.calculate();
             Q = obj.target.value();
             E = F / Q;
+        end
+        
+        function result = potencial(obj)
+            V = 1/(4*pi()*obj.E0);
+            targetPos = obj.target.pos().vec();
+            sum = 0;
+            for i = 1:length(obj.cargas)
+                carga = obj.cargas(i);
+                sum = sum + (carga.value()/(obj.magnitude(targetPos-carga.pos().vec())));
+            end
+            result = V * sum;
         end
         
         function magnitude = magnitude(obj, vec)
