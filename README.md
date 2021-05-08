@@ -1,4 +1,4 @@
-# iCoulomb
+# iCoulomb 🔋
 
 _Simulador computacional hecho en MatLab para cálculos algebráicos de un campo eléctrico con cargas puntuales, dando como resultado la fuerza eléctrica, intensidad del campo eléctrico y el potencial eléctrico de las cargas puntuales._
 
